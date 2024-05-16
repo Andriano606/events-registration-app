@@ -12,12 +12,13 @@ Remember to run `npm run styles:css` every time you make changes to styles
 
 ## Database Configuration and Seeding
 
-This application uses PostgreSQL for data storage. Follow these steps to configure your database and populate it with initial data:
+This application uses PostgreSQL for data storage and Knex.js for database migrations. Follow these steps to configure your database and populate it with initial data:
 
 1. **Set up your database:** Use the following commands to set up your database:
 
     ```sql
     CREATE DATABASE your_database_name;
+    CREATE USER your_username WITH PASSWORD 'your_password';
     GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
     ```
 
@@ -32,25 +33,47 @@ This application uses PostgreSQL for data storage. Follow these steps to configu
     DATABASE_NAME=your_database_name
     ```
 
-3. **Run the seed script:** Navigate to the directory containing the `seeds.sql` file and use the `psql` command to connect to your PostgreSQL database and run the seed script:
+3. **Install Knex.js and the PostgreSQL driver:** Run the following command in your terminal:
 
     ```bash
-    cd /path/to/your/project/database
-    psql -U your_username -d your_database_name -h localhost -p 5432
-    \i seeds.sql
+    npm install knex pg
     ```
 
-    This will execute the SQL commands in the `seeds.sql` file, populating your database with initial data.
+4. **Initialize Knex.js:** Run the following command in your terminal:
 
-4. **Verify the data:** After executing the script, you can verify that the data has been inserted into the `events` table by querying the table using SQL commands or a database client.
+    ```bash
+    npx knex init
+    ```
 
-That's it! Your database is now configured and populated with initial data.
+    This will create a new `knexfile.js` in your project root. Configure it to use your database.
+
+5. **Run migrations:** Navigate to the directory containing the `knexfile.js` file and use the `knex` command to run migrations:
+
+    ```bash
+    npx knex migrate:latest
+    ```
+
+    This will create the necessary tables in your database.
+
+6. **Verify the data:** After executing the migrations, you can verify that the tables have been created by querying the database using SQL commands or a database client.
+
+9. **Run the seed:** Run the following command in your terminal to apply the seed:
+
+    ```bash
+    npx knex seed:run
+    ```
+
+    This will populate your database with the data defined in your seed file.
+
+10. **Verify the data:** After executing the seed, you can verify that the data has been inserted by querying the database using SQL commands or a database client.
+
+That's it! Your database is now configured and ready for use.
 
 ## Running the Server
 
 To start the server, navigate to the project directory in your terminal and run the following command:
 
 ```bash
-node app.js
+npm run start  
 ```
 

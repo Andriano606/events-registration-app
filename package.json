@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "styles:css": "postcss public/stylesheets/build.css -o public/styles.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "styles:css": "postcss public/stylesheets/build.css -o public/styles.css"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "knex": "^3.1.0",
     "pg": "^8.11.5",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
