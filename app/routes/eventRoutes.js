@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const indexController = require('../controllers/indexController');
+const eventController = require('../controllers/eventController');
 
 // Define route to render index page
-router.get('/', indexController.getIndexPage);
+router.get('/', eventController.getIndexPage);
 
 module.exports = router;

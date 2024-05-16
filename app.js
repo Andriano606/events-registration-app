@@ -12,8 +12,8 @@ app.set('views', path.join(__dirname, 'app', 'views'));
 app.use(express.static('public'));
 
 // Define routes
-const indexRoute = require('./app/routes/indexRoute');
-app.use('/', indexRoute);
+const userRoutes = require('./app/routes/eventRoutes');
+app.use('/', userRoutes);
 
 // bootstrap
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));

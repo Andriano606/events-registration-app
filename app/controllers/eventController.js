@@ -1,9 +1,9 @@
-const db = require('../db');
+const Event = require('../models/event');
 
 exports.getIndexPage = async (req, res) => {
   try {
     // Fetch events from database
-    const { rows: events } = await db.query('SELECT * FROM events ORDER BY event_date DESC');
+    const events = await Event.findAll({ order: [['event_date', 'DESC']] });
     // Render index page with events data
     res.render('index', { events });
   } catch (error) {
