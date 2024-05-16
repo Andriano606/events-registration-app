@@ -1,13 +1,12 @@
-const Event = require('../models/event');
+const EventIndexOperation = require('../operations/events/index');
 
 exports.getIndexPage = async (req, res) => {
   try {
     // Fetch events from database
-    const events = await Event.findAll({ order: [['event_date', 'DESC']] });
+    const events = await EventIndexOperation.fetchAllEvents();
     // Render index page with events data
     res.render('event/index', { events });
   } catch (error) {
-    console.error('Error fetching events:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send(error.message);
   }
 };
