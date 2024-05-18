@@ -1,4 +1,19 @@
 <h1 class="mb-4">Users</h1>
+
+<form class="d-flex mb-4" id="searchForm" action="" method="get">
+  <input class="form-control me-2" id="nameInput" type="text" value="<%= name %>" name="name" placeholder="Search by name or email">
+  <input class="btn btn-outline-success" type="submit" value="Search">
+</form>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    var id = '<%= event.id %>';
+    var name = document.getElementById('nameInput').value;
+    window.location.href = '/view/' + id + '/' + name;
+  });
+  </script>
+
 <div class="row">
   <% users.forEach(user => { %>
     <div class="col-sm-4">
