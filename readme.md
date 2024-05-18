@@ -1,8 +1,16 @@
 ### How to run the application
 
+## Install Dependencies
+
+Before running the server, you need to install the necessary dependencies. Navigate to the project directory in your terminal and run the following command:
+
+```bash
+  npm install
+```
+
 ## Building Styles
 ```bash
-    npm run styles:css
+  npm run styles:css
 ```
 ## Database Configuration and Seeding
 
