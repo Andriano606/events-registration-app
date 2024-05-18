@@ -22,6 +22,34 @@ class Show {
     }
   }
 
+  static async fetchUsersCountByDate(params) {
+    const event = await Event.findByPk(params.id, {
+      include: User
+    });
+    
+    if (!event) {
+      console.error('Event not found');
+      throw new Error('Event not found');
+    }
+
+    const usersCountByDate = event.Users.reduce((acc, user) => {
+      const date = new Date(user.createdAt);
+      const key = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  
+      if (!acc[key]) {
+        acc[key] = 0;
+      }
+  
+      acc[key]++;
+  
+      return acc;
+    }, {});
+
+    const usersCountByDateArray = Object.entries(usersCountByDate).map(([date, count]) => ({ date, count }));
+
+    return usersCountByDateArray;
+  }
+
   static filterUsers(users, name) {
     if (!name) return users;
 

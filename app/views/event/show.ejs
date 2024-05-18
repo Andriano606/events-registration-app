@@ -26,3 +26,36 @@
     </div>
   <% }) %>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div style="width: 800px; height: 400px;">
+  <canvas class="mt-4" id="myChart"></canvas>
+</div>
+<script>
+  const usersCountByDateArray =  JSON.parse('<%- JSON.stringify(usersCountByDateArray) %>');
+
+  const dates = usersCountByDateArray.map(user => user.date);
+  const counts = usersCountByDateArray.map(user => user.count);
+
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'line', // or 'bar'
+      data: {
+          labels: dates,
+          datasets: [{
+              label: 'Registrations per day',
+              data: counts,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>

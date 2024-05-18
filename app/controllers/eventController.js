@@ -1,5 +1,5 @@
 const { fetchAllEvents } = require('../operations/events/index');
-const { fetchAllEventUsers } = require('../operations/events/show');
+const { fetchAllEventUsers, fetchUsersCountByDate } = require('../operations/events/show');
 const ejs = require('ejs');
 const path = require('path');
 
@@ -22,7 +22,8 @@ exports.index = async (req, res) => {
 exports.show = async (req, res) => {
   try {
     const { users, event, name } = await fetchAllEventUsers(req.params)
-    const body = await ejs.renderFile(path.join(__dirname, '../views/event/show.ejs'), { users, event, name });
+    const usersCountByDateArray = await fetchUsersCountByDate(req.params)
+    const body = await ejs.renderFile(path.join(__dirname, '../views/event/show.ejs'), { users, event, name, usersCountByDateArray });
     res.render('layout', { body });
   } catch (error) {
     res.status(500).send(error.message);
