@@ -1,6 +1,6 @@
-const Event = require('../../models/event');
+const { Event, User } = require('../../models/associations');
 
-class EventIndexOperation {
+class Index {
   static async fetchAllEvents() {
     try {
       // Fetch events from database
@@ -13,4 +13,4 @@ class EventIndexOperation {
   }
 }
 
-module.exports = EventIndexOperation;
+module.exports = Index;

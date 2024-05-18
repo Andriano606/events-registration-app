@@ -1,9 +1,5 @@
-require('dotenv').config();
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
-  host: process.env.DATABASE_HOST,
-  dialect: 'postgres'
-});
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
 const Event = sequelize.define('Event', {
   id: {

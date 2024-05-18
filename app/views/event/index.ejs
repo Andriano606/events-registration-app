@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events Registration App</title>
-  <!-- Link to styles.css -->
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
-</head>
-<body class="page-margin">
-  <h1 class="mb-4">Events</h1>
-  <div class="row">
-    <% events.forEach(event => { %>
-      <div class="col-sm-4">
-        <div class="card mb-4 p-3 rounded-0">
-          <div class="card-body">
-            <h5 class="card-title"><%= event.title %></h5>
-            <p class="card-text"><%= event.description %></p>
-            <a href="/register/<%= event.id %>" class="btn btn-primary">Register</a>
-            <a href="/view/<%= event.id %>" class="btn btn-secondary">View</a>
-          </div>
+<h1 class="mb-4">Events</h1>
+<div class="row">
+  <% events.forEach(event => { %>
+    <div class="col-sm-4">
+      <div class="card mb-4 p-3 rounded-0">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.title %></h5>
+          <p class="card-text"><%= event.description %></p>
+          <a href="/register/<%= event.id %>" class="btn btn-primary">Register</a>
+          <a href="/view/<%= event.id %>" class="btn btn-secondary">View</a>
         </div>
       </div>
-    <% }) %>
-  </div>
-</body>
-</html>
+    </div>
+  <% }) %>
+</div>
