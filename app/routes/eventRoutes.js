@@ -4,5 +4,6 @@ const eventController = require('../controllers/eventController');
 
 // Define route to render index page
 router.get('/', eventController.index);
+router.get('/view/:id', eventController.show);
 
 module.exports = router;

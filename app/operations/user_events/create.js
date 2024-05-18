@@ -18,6 +18,14 @@ class Create {
           dateOfBirth: body.dob,
           source: body.source
         });
+      } else {
+        const userEvents = await user.getEvents();
+        const hasEvent = userEvents.some(userEvent => userEvent.id === event.id);
+
+        if (hasEvent) {
+          console.error('User already has this event');
+          return
+        }
       }
       
       if (user && event) {

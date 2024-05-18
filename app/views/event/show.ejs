@@ -1,0 +1,13 @@
+<h1 class="mb-4">Users</h1>
+<div class="row">
+  <% users.forEach(user => { %>
+    <div class="col-sm-4">
+      <div class="card mb-4 p-3 rounded-0">
+        <div class="card-body">
+          <h5 class="card-title"><%= user.fullName %></h5>
+          <p class="card-text"><%= user.email %></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
