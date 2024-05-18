@@ -3,8 +3,8 @@ const { Event, User } = require('../../models/associations');
 class Index {
   static async fetchAllEvents(req) {
     try {
-      const page = parseInt(req.query.page, 15) || 1;
-      const limit = parseInt(req.query.limit, 15) || 15;
+      const page = parseInt(req.query.page, 10) || 1;
+      const limit = parseInt(req.query.limit, 10) || 10;
       const offset = (page - 1) * limit;
       const sort = req.query.sort || 'title';
       const order = req.query.order || 'ASC';
