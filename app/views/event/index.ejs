@@ -1,4 +1,17 @@
 <h1 class="mb-4">Events</h1>
+
+<div class="my-4">
+  <a href="?sort=title&order=<%= sort === 'title' && order === 'ASC' ? 'DESC' : 'ASC' %>" class="btn btn-secondary btn-sm mr-2">
+    Sort by Title (<%= sort === 'title' && order === 'ASC' ? 'Z-A' : 'A-Z' %>)
+  </a>
+  <a href="?sort=event_date&order=<%= sort === 'event_date' && order === 'ASC' ? 'DESC' : 'ASC' %>" class="btn btn-secondary btn-sm mr-2">
+    Sort by Date (<%= sort === 'event_date' && order === 'ASC' ? 'Latest' : 'Earliest' %>)
+  </a>
+  <a href="?sort=organizer&order=<%= sort === 'organizer' && order === 'ASC' ? 'DESC' : 'ASC' %>" class="btn btn-secondary btn-sm mr-2">
+    Sort by Organizer (<%= sort === 'organizer' && order === 'ASC' ? 'Z-A' : 'A-Z' %>)
+  </a>
+</div>
+
 <div class="row">
   <% events.forEach(event => { %>
     <div class="col-sm-4">
