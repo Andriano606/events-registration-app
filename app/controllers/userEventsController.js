@@ -16,7 +16,7 @@ exports.new = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    await operationCreate.createParticipant(req)
+    await operationCreate.createParticipant(req.body)
     req.flash('notice', 'Participant added successfully');
     res.redirect('/');
   } catch (error) {
