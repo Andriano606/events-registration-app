@@ -25,7 +25,6 @@ const Event = sequelize.define('Event', {
   }
 }, {
   tableName: 'events'
-  // Other model options go here
 });
 
 module.exports = Event;

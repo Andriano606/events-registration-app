@@ -34,6 +34,5 @@ app.listen(PORT, () => {
 });
 
 process.on('exit', () => {
-  // Close the database connection pool
   pool.end();
 });

@@ -3,7 +3,6 @@ const { Event, User } = require('../../models/associations');
 class Index {
   static async fetchAllEvents() {
     try {
-      // Fetch events from database
       const events = await Event.findAll({ order: [['event_date', 'DESC']] });
       return events;
     } catch (error) {
