@@ -7,6 +7,10 @@ const Event = sequelize.define('Event', {
     autoIncrement: true,
     primaryKey: true
   },
+  api_id: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   title: {
     type: DataTypes.STRING,
     allowNull: false
@@ -21,7 +25,7 @@ const Event = sequelize.define('Event', {
   },
   organizer: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   }
 }, {
   tableName: 'events'

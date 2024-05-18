@@ -59,3 +59,6 @@ To start the server, navigate to the project directory in your terminal and run 
 npm run start  
 ```
 
+## Fetching Events
+
+This application uses a node-cron job to fetch events from the [PredictHq](https://control.predicthq.com/) API every hour. The cron job is scheduled to run in the background and fetches new events.

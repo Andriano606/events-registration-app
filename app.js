@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const startCronJobs = require('./cronJobs');
 
 app.use(session({
   secret: 'your secret key',
@@ -37,6 +38,9 @@ app.use('/', userEventsRoutes);
 
 // bootstrap
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
+// Start the cron jobs
+startCronJobs();
 
 // Start the server
 app.listen(PORT, () => {
