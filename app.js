@@ -4,6 +4,16 @@ const PORT = process.env.PORT || 3003;
 const path = require('path');
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
+
+app.use(session({
+  secret: 'your secret key',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+app.use(flash());
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');

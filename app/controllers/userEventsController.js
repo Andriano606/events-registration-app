@@ -16,7 +16,8 @@ exports.new = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    await operationCreate.createParticipant(req.body)
+    await operationCreate.createParticipant(req)
+    req.flash('notice', 'Participant added successfully');
     res.redirect('/');
   } catch (error) {
     console.error('Error registering user:', error);

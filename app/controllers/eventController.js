@@ -7,7 +7,9 @@ exports.index = async (req, res) => {
   try {
     const events = await fetchAllEvents();
     const body = await ejs.renderFile(path.join(__dirname, '../views/event/index.ejs'), { events });
-    res.render('layout', { body });
+    const notice = req.flash('notice');
+    
+    res.render('layout', { body, notice });
   } catch (error) {
     res.status(500).send(error.message);
   }
