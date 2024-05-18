@@ -5,10 +5,15 @@ const path = require('path');
 
 exports.index = async (req, res) => {
   try {
-    const { events, sort, order } = await fetchAllEvents(req);
-    const body = await ejs.renderFile(path.join(__dirname, '../views/event/index.ejs'), { events, sort, order });
-    const notice = req.flash('notice');
-    res.render('layout', { body, notice });
+    const { events, sort, order, page } = await fetchAllEvents(req);
+
+    if (page !== 1) {
+      res.json({ events });
+    } else{
+      const body = await ejs.renderFile(path.join(__dirname, '../views/event/index.ejs'), { events, sort, order });
+      const notice = req.flash('notice');
+      res.render('layout', { body, notice });
+    }
   } catch (error) {
     res.status(500).send(error.message);
   }

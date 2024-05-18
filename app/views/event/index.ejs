@@ -26,3 +26,40 @@
     </div>
   <% }) %>
 </div>
+
+<script>
+  let page = 1;
+  const limit = 10;
+
+  function createEventElement(event) {
+    const div = document.createElement('div');
+    div.className = 'col-sm-4';
+    div.innerHTML = `
+        <div class="card mb-4 p-3 rounded-0">
+          <div class="card-body">
+            <h5 class="card-title">${event.title}</h5>
+            <p class="card-text">${event.description}</p>
+            <a href="/register/${event.id}" class="btn btn-primary">Register</a>
+            <a href="/view/${event.id}" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      `;
+    return div;
+  }
+
+  window.onscroll = async function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      page++;
+      const response = await fetch(`?page=${page}&limit=${limit}`);
+      
+      if (!response.ok) {
+        console.error('Server response was not ok', response);
+        return;
+      }
+
+      const { events } = await response.json();
+
+      document.querySelector('.row').append(...events.map(createEventElement));
+    }
+  };
+</script>

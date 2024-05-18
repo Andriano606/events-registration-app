@@ -1,8 +1,11 @@
 exports.seed = function(knex) {
-  return knex('events').del()
+  return knex('UserEvents').del()
+    .then(function () {
+      return knex('events').del();
+    })
     .then(function () {
       let seedData = [];
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 500; i++) {
         seedData.push({
           title: 'Event ' + i,
           description: 'Description for Event ' + i,
