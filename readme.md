@@ -61,4 +61,4 @@ npm run start
 
 ## Fetching Events
 
-This application uses a node-cron job to fetch events from the [PredictHq](https://control.predicthq.com/) API every hour. The cron job is scheduled to run in the background and fetches new events.
+This application uses a node-cron job to fetch events from the [PredictHq](https://control.predicthq.com/) API every day at 23:59. The cron job is scheduled to run in the background and fetches new events.
