@@ -1,4 +1,5 @@
 const { Event, User } = require('../../models/associations');
+const { Op } = require('sequelize');
 
 class Show {
   static async fetchAllEventUsers(params) {
@@ -12,8 +13,25 @@ class Show {
         throw new Error('Event not found');
       }
 
-      const name = params.name || '';
-      const users = Show.filterUsers(event.Users, name);
+      const name = params.name;
+      let users = [];
+      if (name) {
+        users = await User.findAll({
+          include: [{
+            model: Event,
+            as: 'Events',
+            where: { id: params.id }
+          }],
+          where: {
+            [Op.or]: [
+              { email: { [Op.like]: `%${name}%` } },
+              { fullName: { [Op.like]: `%${name}%` } }
+            ]
+          }
+        });
+      } else {
+        users = event.Users;
+      }
 
       return { users, event,  name };
     } catch (error) {
@@ -48,12 +66,6 @@ class Show {
     const usersCountByDateArray = Object.entries(usersCountByDate).map(([date, count]) => ({ date, count }));
 
     return usersCountByDateArray;
-  }
-
-  static filterUsers(users, name) {
-    if (!name) return users;
-
-    return users.filter(user => (user.fullName === name || user.email === name)); 
   }
 }
 
