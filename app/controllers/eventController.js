@@ -8,7 +8,8 @@ exports.index = async (req, res) => {
     const { events, sort, order, page } = await fetchAllEvents(req);
 
     if (page !== 1) {
-      res.json({ events });
+      const eventCards = await ejs.renderFile(path.join(__dirname, '../views/event/partials/eventCards.ejs'), { events });
+      res.json({ eventCards });
     } else{
       const body = await ejs.renderFile(path.join(__dirname, '../views/event/index.ejs'), { events, sort, order });
       const notice = req.flash('notice');
