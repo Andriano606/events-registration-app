@@ -15,7 +15,14 @@ class Index {
         order: [[sort, order]]
       });
 
-      return { events, sort, order, page };
+      const eventsData = events.map(event => {
+        return {
+          event: event,
+          eventDate: new Date(event.event_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        };
+      });
+
+      return { eventsData, sort, order, page };
     } catch (error) {
       console.error('Error fetching events:', error);
       throw new Error('Internal Server Error');
