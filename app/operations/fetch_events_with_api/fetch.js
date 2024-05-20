@@ -58,4 +58,4 @@ async function fetchEvents() {
   }
 }
 
-fetchEvents();
+module.exports = fetchEvents;
