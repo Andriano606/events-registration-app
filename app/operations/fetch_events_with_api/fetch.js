@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { Event } = require('../../models/associations');
+const { Event, User } = require('../../models/associations');
+const faker = require('faker');
 
 CLIENT_ID = 'b6aTNuiB-r0'
 CLIENT_SECRET='W9gm6brZM_uJCdDnLsqPVz5wgJwOAf91RvjWXc7A7NySPPfKkaZ_Tw'
@@ -58,4 +59,31 @@ async function fetchEvents() {
   }
 }
 
-module.exports = fetchEvents;
+async function seedUsersAndEvents() {
+  // Get all events
+  const events = await Event.findAll()
+
+  for (const event of events) {
+    // Generate a random number of users for each event
+    const numUsers = Math.floor(Math.random() * 6) + 5; // Generates a random number between 5 and 10
+
+    for (let i = 0; i < numUsers; i++) {
+      // Create a user with a random name and email
+      const user = new User({
+        fullName: faker.name.findName(),
+        email: faker.internet.email(),
+        dateOfBirth: faker.date.past(50, new Date()),
+        source: 'seed'
+      });
+
+      await user.save();
+
+      // Attach the user to the event
+      event.addUser(user);
+    }
+
+    await event.save();
+  }
+}
+
+module.exports = { fetchEvents, seedUsersAndEvents };
