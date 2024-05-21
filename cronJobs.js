@@ -3,7 +3,7 @@ const { fetchEvents, seedUsersAndEvents } = require('./app/operations/fetch_even
 
 function startCronJobs() {
   cron.schedule('59 23 * * *', () => {
-    fetchNewEvents();
+    fetchEvents();
     seedUsersAndEvents();
   });
 }
