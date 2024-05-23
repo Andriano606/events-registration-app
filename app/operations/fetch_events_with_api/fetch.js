@@ -65,7 +65,7 @@ async function seedUsersAndEvents() {
 
   for (const event of events) {
     // Generate a random number of users for each event
-    const numUsers = Math.floor(Math.random() * 6) + 5; // Generates a random number between 5 and 10
+    const numUsers = Math.floor(Math.random() * 5); // Generates a random number between 0 and 4
 
     for (let i = 0; i < numUsers; i++) {
       // Create a user with a random name and email
