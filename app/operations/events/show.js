@@ -16,19 +16,9 @@ class Show {
       const name = params.name;
       let users = [];
       if (name) {
-        users = await User.findAll({
-          include: [{
-            model: Event,
-            as: 'Events',
-            where: { id: params.id }
-          }],
-          where: {
-            [Op.or]: [
-              { email: { [Op.like]: `%${name}%` } },
-              { fullName: { [Op.like]: `%${name}%` } }
-            ]
-          }
-        });
+        users = event.Users.filter(user => 
+          user.fullName.includes(name) || user.email.includes(name)
+        );
       } else {
         users = event.Users;
       }
